@@ -5,6 +5,11 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PigPayV01", "PigPayV01\PigPayV01.csproj", "{E89B3B9A-80B2-4DA2-9D17-8EDA2885778D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dokumentation", "Dokumentation", "{C7209781-37CC-42BD-BA41-E795E3B49B0A}"
+	ProjectSection(SolutionItems) = preProject
+		PigPayV01\Dokumentation\Dokumentation.docx = PigPayV01\Dokumentation\Dokumentation.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
