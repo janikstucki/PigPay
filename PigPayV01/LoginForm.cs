@@ -25,6 +25,8 @@ namespace PigPayV01
     // Überprüft ob die eingegebenenDaten in der Datenbank vorhanden sind um sich Anzumelden
     private void OnAnmelden(object sender, EventArgs e)
     {
+      HomeForm homeForm = new HomeForm();
+      homeForm.Show();
       this.Close();
     }
     /* Holt sich die Daten aus der Datenbank und überprüft ob die eingegebenen Daten stimmen falls nicht gibt es eine 
@@ -77,10 +79,10 @@ namespace PigPayV01
           else
           {
             e.Cancel = true;
-            MessageBox.Show("Eingabe Falsch", "Chipsi ist sauer");
+            MessageBox.Show("Eingabe Falsch", "Fehler");
           }
         }
-
+        
         reader.Close();
         connection.Close();
 
