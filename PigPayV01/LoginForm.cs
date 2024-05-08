@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace PigPayV01
 {
-  public partial class MainForm : Form
+  public partial class LoginForm : Form
   {
-    public MainForm()
+    public LoginForm()
     {
       InitializeComponent();
     }
@@ -27,7 +27,8 @@ namespace PigPayV01
     {
       this.Close();
     }
-
+    /* Holt sich die Daten aus der Datenbank und überprüft ob die eingegebenen Daten stimmen falls nicht gibt es eine 
+    Fehlermeldung aus*/
     private void OnFormClosing(object sender, FormClosingEventArgs e)
     {
       if(DialogResult != DialogResult.OK) return;
@@ -68,7 +69,8 @@ namespace PigPayV01
             if (p != PasswortTBX.Text)
             {
               e.Cancel = true;
-              MessageBox.Show("Eingabe Falsch", "Chipsi ist sauer");
+              MessageBox.Show("Eingabe Falsch", "Fehler",MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
             }
 
           }

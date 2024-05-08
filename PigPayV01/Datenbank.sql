@@ -18,3 +18,4 @@ create table BenutzerInformationen (
 insert into BenutzerInformationen(Vorname, Nachname, Kontonummer, Guthaben) values ('Janik', 'Stucki', 1234567890, 100000)
 
 select * from BenutzerInformationen
+Delete BenutzerInformationen Where UserId = 2;
