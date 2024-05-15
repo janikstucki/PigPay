@@ -16,6 +16,9 @@ namespace PigPayV01
     public LoginForm()
     {
       InitializeComponent();
+
+      UsernameTBX.Text = "1234567890";
+      PasswortTBX.Text = "Passwort";
     }
 
     private void Form1_Load(object sender, EventArgs e)
