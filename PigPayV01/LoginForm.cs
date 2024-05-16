@@ -28,23 +28,25 @@ namespace PigPayV01
     // Überprüft ob die eingegebenenDaten in der Datenbank vorhanden sind um sich Anzumelden
     private void OnAnmelden(object sender, EventArgs e)
     {
-      HomeForm homeForm = new HomeForm();
-      homeForm.Show();
       this.Close();
     }
     /* Holt sich die Daten aus der Datenbank und überprüft ob die eingegebenen Daten stimmen falls nicht gibt es eine 
     Fehlermeldung aus*/
     private void OnFormClosing(object sender, FormClosingEventArgs e)
     {
-      if(DialogResult != DialogResult.OK) return;
-      const String connectionString = @"Data Source=W11-WORK23\SQLEXPRESS;Initial Catalog=PigPayData;Integrated Security=True;";
+      if (DialogResult != DialogResult.OK) return;
+      SqlConnectionStringBuilder Con = new SqlConnectionStringBuilder();  
+      Con.DataSource = "NOTEBOOK-JANIK\\SQLEXPRESS";
+      Con.InitialCatalog = "PigPayData";
+      Con.IntegratedSecurity = true;
+      Con.TrustServerCertificate = true;
       var query = "SELECT * FROM BenutzerInformationen";
       string Benutzername = UsernameTBX.Text;
       List<int> b = new List<int>();
       string Passwort = PasswortTBX.Text;
       string p = string.Empty;
 
-      using (SqlConnection connection = new SqlConnection(connectionString))
+      using (SqlConnection connection = new SqlConnection(Con.ConnectionString))
       {
         SqlCommand cmd = new SqlCommand(query, connection);
 
@@ -60,7 +62,7 @@ namespace PigPayV01
         {
           if (s.ToString() == UsernameTBX.Text)
           {
-            
+
             query = "SELECT * FROM BenutzerInformationen WHERE Kontonummer = @Value1";
             SqlCommand sql = new SqlCommand(query, connection);
             sql.Parameters.AddWithValue("@Value1", UsernameTBX.Text);
@@ -69,26 +71,24 @@ namespace PigPayV01
             reader = sql.ExecuteReader();
             while (reader.Read())
             {
-              p = reader.GetString(reader.GetOrdinal("passwort"));
+              p = reader.GetString(reader.GetOrdinal("Passwort"));
             }
+            reader.Close();
             if (p != PasswortTBX.Text)
             {
               e.Cancel = true;
-              MessageBox.Show("Eingabe Falsch", "Fehler",MessageBoxButtons.OK,
+              MessageBox.Show("Eingabe Falsch", "Fehler", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
             }
-
           }
           else
           {
             e.Cancel = true;
-            MessageBox.Show("Eingabe Falsch", "Fehler");
+            MessageBox.Show("Eingabe Falsch", "Fehler", MessageBoxButtons.OK,
+                      MessageBoxIcon.Error);
           }
         }
-        
-        reader.Close();
         connection.Close();
-
       }
     }
   }
