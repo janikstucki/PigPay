@@ -39,11 +39,12 @@ namespace PigPayV01
 
     private void OnEBankingClick(object sender, EventArgs e)
     {
-
-      EBankingFrom bezahlenFrom = new EBankingFrom();
+      
+      EBankingForm bezahlenFrom = new EBankingForm();
       bezahlenFrom.ShowDialog();
-
       this.Close();
+
+
     }
   }
 }

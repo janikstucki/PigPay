@@ -128,7 +128,7 @@
       this.Controls.Add(this.UsernameTBX);
       this.Name = "LoginForm";
       this.Text = "Login - PigPay";
-      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+      this.AnmeldenBTN.Click += new System.EventHandler(this.AnmeldenBTN_Click);
       this.Load += new System.EventHandler(this.Form1_Load);
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();

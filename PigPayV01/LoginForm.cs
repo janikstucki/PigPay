@@ -1,99 +1,84 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PigPayV01
 {
   public partial class LoginForm : Form
   {
+    private bool errorMessageShown = false; // Variable, um zu verfolgen, ob die Fehlermeldung bereits angezeigt wurde
+
     public LoginForm()
     {
       InitializeComponent();
-
       UsernameTBX.Text = "1234567890";
       PasswortTBX.Text = "Passwort";
-
-      
     }
 
     private void Form1_Load(object sender, EventArgs e)
     {
-
     }
-    // Überprüft ob die eingegebenenDaten in der Datenbank vorhanden sind um sich Anzumelden
+
     private void OnAnmelden(object sender, EventArgs e)
     {
-      this.Close();
-      
-    }
-    /* Holt sich die Daten aus der Datenbank und überprüft ob die eingegebenen Daten stimmen falls nicht gibt es eine 
-    Fehlermeldung aus*/
-    private void OnFormClosing(object sender, FormClosingEventArgs e)
-    {
-      if (DialogResult != DialogResult.OK) return;
-      SqlConnectionStringBuilder Con = new SqlConnectionStringBuilder();  
-      Con.DataSource = "NOTEBOOK-JANIK\\SQLEXPRESS";
-      Con.InitialCatalog = "PigPayData";
-      Con.IntegratedSecurity = true;
-      Con.TrustServerCertificate = true;
-      var query = "SELECT * FROM BenutzerInformationen";
-      string Benutzername = UsernameTBX.Text;
-      List<int> b = new List<int>();
-      string Passwort = PasswortTBX.Text;
-      string p = string.Empty;
-
-      using (SqlConnection connection = new SqlConnection(Con.ConnectionString))
+      try
       {
-        SqlCommand cmd = new SqlCommand(query, connection);
-
-        connection.Open();
-
-        SqlDataReader reader = cmd.ExecuteReader();
-        while (reader.Read())
+        SqlConnectionStringBuilder Con = new SqlConnectionStringBuilder
         {
-          b.Add(reader.GetInt32(reader.GetOrdinal("Kontonummer")));
-        }
-        connection.Close();
-        foreach (int s in b)
+          DataSource = "W11-WORK23\\SQLEXPRESS",
+          InitialCatalog = "PigPayData",
+          IntegratedSecurity = true,
+          TrustServerCertificate = true
+        };
+
+        using (SqlConnection connection = new SqlConnection(Con.ConnectionString))
         {
-          if (s.ToString() == UsernameTBX.Text)
+          connection.Open();
+
+          string kontonummer = UsernameTBX.Text;
+          string passwort = PasswortTBX.Text;
+
+          string query = "SELECT COUNT(*) FROM BenutzerInformationen WHERE Kontonummer = @Kontonummer AND Passwort = @Passwort";
+          using (SqlCommand cmd = new SqlCommand(query, connection))
           {
+            cmd.Parameters.AddWithValue("@Kontonummer", kontonummer);
+            cmd.Parameters.AddWithValue("@Passwort", passwort);
 
-            query = "SELECT * FROM BenutzerInformationen WHERE Kontonummer = @Value1";
-            SqlCommand sql = new SqlCommand(query, connection);
-            sql.Parameters.AddWithValue("@Value1", UsernameTBX.Text);
-            connection.Open();
-
-            reader = sql.ExecuteReader();
-            while (reader.Read())
+            int userCount = (int)cmd.ExecuteScalar();
+            if (userCount == 1)
             {
-              p = reader.GetString(reader.GetOrdinal("Passwort"));
+              this.DialogResult = DialogResult.OK;
             }
-            reader.Close();
-            if (p != PasswortTBX.Text)
+            else
             {
-              e.Cancel = true;
-              MessageBox.Show("Eingabe Falsch", "Fehler", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+              if (!errorMessageShown) // Überprüft, ob die Fehlermeldung bereits angezeigt wurde
+              {
+                MessageBox.Show("Kontonummer oder Passwort ist falsch.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorMessageShown = true; // Setzt den Status der Fehlermeldung auf true, um anzuzeigen, dass die Fehlermeldung angezeigt wurde
+              }
+              this.DialogResult = DialogResult.None;
             }
           }
-          else
-          {
-            e.Cancel = true;
-            MessageBox.Show("Eingabe Falsch", "Fehler", MessageBoxButtons.OK,
-                      MessageBoxIcon.Error);
-          }
         }
-        connection.Close();
       }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Ein Fehler ist aufgetreten: " + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        this.DialogResult = DialogResult.None;
+      }
+    }
+
+    private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      if (this.DialogResult != DialogResult.OK)
+      {
+        e.Cancel = true;
+      }
+    }
+
+    private void AnmeldenBTN_Click(object sender, EventArgs e)
+    {
+      OnAnmelden(sender, e);
     }
   }
 }
