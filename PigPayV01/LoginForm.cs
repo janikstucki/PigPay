@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +20,8 @@ namespace PigPayV01
 
       UsernameTBX.Text = "1234567890";
       PasswortTBX.Text = "Passwort";
+
+      
     }
 
     private void Form1_Load(object sender, EventArgs e)
@@ -29,6 +32,7 @@ namespace PigPayV01
     private void OnAnmelden(object sender, EventArgs e)
     {
       this.Close();
+      
     }
     /* Holt sich die Daten aus der Datenbank und überprüft ob die eingegebenen Daten stimmen falls nicht gibt es eine 
     Fehlermeldung aus*/

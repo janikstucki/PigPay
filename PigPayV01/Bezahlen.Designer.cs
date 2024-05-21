@@ -1,6 +1,6 @@
 ﻿namespace PigPayV01
 {
-  partial class HomeForm
+  partial class EBankingFrom
   {
     /// <summary>
     /// Required designer variable.
@@ -28,13 +28,26 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.GreetLBL = new System.Windows.Forms.Label();
       this.MainMenu = new System.Windows.Forms.MenuStrip();
       this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.eBankingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.GreetLBL = new System.Windows.Forms.Label();
+      this.GeldSendenAnTBX = new System.Windows.Forms.TextBox();
+      this.GeldSendenBetragTBX = new System.Windows.Forms.TextBox();
+      this.ueberweisenBTN = new System.Windows.Forms.Button();
       this.MainMenu.SuspendLayout();
       this.SuspendLayout();
+      // 
+      // GreetLBL
+      // 
+      this.GreetLBL.AutoSize = true;
+      this.GreetLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.GreetLBL.Location = new System.Drawing.Point(422, 9);
+      this.GreetLBL.Name = "GreetLBL";
+      this.GreetLBL.Size = new System.Drawing.Size(124, 29);
+      this.GreetLBL.TabIndex = 3;
+      this.GreetLBL.Text = "E-Banking";
       // 
       // MainMenu
       // 
@@ -46,8 +59,8 @@
             this.hilfeToolStripMenuItem});
       this.MainMenu.Location = new System.Drawing.Point(0, 0);
       this.MainMenu.Name = "MainMenu";
-      this.MainMenu.Size = new System.Drawing.Size(1020, 33);
-      this.MainMenu.TabIndex = 0;
+      this.MainMenu.Size = new System.Drawing.Size(981, 36);
+      this.MainMenu.TabIndex = 2;
       this.MainMenu.Text = "menuStrip1";
       // 
       // homeToolStripMenuItem
@@ -59,9 +72,8 @@
       // eBankingToolStripMenuItem
       // 
       this.eBankingToolStripMenuItem.Name = "eBankingToolStripMenuItem";
-      this.eBankingToolStripMenuItem.Size = new System.Drawing.Size(107, 29);
+      this.eBankingToolStripMenuItem.Size = new System.Drawing.Size(107, 32);
       this.eBankingToolStripMenuItem.Text = "E-Banking";
-      this.eBankingToolStripMenuItem.Click += new System.EventHandler(this.OnEBankingClick);
       // 
       // hilfeToolStripMenuItem
       // 
@@ -70,27 +82,43 @@
       this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(64, 32);
       this.hilfeToolStripMenuItem.Text = "Hilfe";
       // 
-      // GreetLBL
+      // GeldSendenAnTBX
       // 
-      this.GreetLBL.AutoSize = true;
-      this.GreetLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.GreetLBL.Location = new System.Drawing.Point(435, 7);
-      this.GreetLBL.Name = "GreetLBL";
-      this.GreetLBL.Size = new System.Drawing.Size(126, 29);
-      this.GreetLBL.TabIndex = 1;
-      this.GreetLBL.Text = "Guten Tag";
-      this.GreetLBL.Click += new System.EventHandler(this.GreetLBL_Click);
+      this.GeldSendenAnTBX.Location = new System.Drawing.Point(74, 170);
+      this.GeldSendenAnTBX.Name = "GeldSendenAnTBX";
+      this.GeldSendenAnTBX.Size = new System.Drawing.Size(125, 26);
+      this.GeldSendenAnTBX.TabIndex = 4;
+      this.GeldSendenAnTBX.Text = "Kontonummer";
       // 
-      // HomeForm
+      // GeldSendenBetragTBX
+      // 
+      this.GeldSendenBetragTBX.Location = new System.Drawing.Point(261, 170);
+      this.GeldSendenBetragTBX.Name = "GeldSendenBetragTBX";
+      this.GeldSendenBetragTBX.Size = new System.Drawing.Size(100, 26);
+      this.GeldSendenBetragTBX.TabIndex = 5;
+      this.GeldSendenBetragTBX.Text = "Betrag";
+      // 
+      // ueberweisenBTN
+      // 
+      this.ueberweisenBTN.Location = new System.Drawing.Point(127, 250);
+      this.ueberweisenBTN.Name = "ueberweisenBTN";
+      this.ueberweisenBTN.Size = new System.Drawing.Size(158, 26);
+      this.ueberweisenBTN.TabIndex = 6;
+      this.ueberweisenBTN.Text = "Geld senden";
+      this.ueberweisenBTN.UseVisualStyleBackColor = true;
+      // 
+      // EBankingFrom
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1020, 533);
+      this.ClientSize = new System.Drawing.Size(981, 617);
+      this.Controls.Add(this.ueberweisenBTN);
+      this.Controls.Add(this.GeldSendenBetragTBX);
+      this.Controls.Add(this.GeldSendenAnTBX);
       this.Controls.Add(this.GreetLBL);
       this.Controls.Add(this.MainMenu);
-      this.MainMenuStrip = this.MainMenu;
-      this.Name = "HomeForm";
-      this.Text = "Home - PigPay";
+      this.Name = "EBankingFrom";
+      this.Text = "E-Banking";
       this.MainMenu.ResumeLayout(false);
       this.MainMenu.PerformLayout();
       this.ResumeLayout(false);
@@ -100,10 +128,13 @@
 
     #endregion
 
+    private System.Windows.Forms.Label GreetLBL;
     private System.Windows.Forms.MenuStrip MainMenu;
     private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem eBankingToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
-    private System.Windows.Forms.Label GreetLBL;
+    private System.Windows.Forms.TextBox GeldSendenAnTBX;
+    private System.Windows.Forms.TextBox GeldSendenBetragTBX;
+    private System.Windows.Forms.Button ueberweisenBTN;
   }
 }

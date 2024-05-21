@@ -17,5 +17,8 @@ create table BenutzerInformationen (
 
 insert into BenutzerInformationen(Vorname, Nachname, Kontonummer, Guthaben) values ('Janik', 'Stucki', 1234567890, 100000)
 
+alter table BenutzerInformationen add Passwort varchar(30);
+update BenutzerInformationen set Passwort = 'Passwort' where Kontonummer = 1234567890
+
 select * from BenutzerInformationen
 Delete BenutzerInformationen Where UserId = 2;
