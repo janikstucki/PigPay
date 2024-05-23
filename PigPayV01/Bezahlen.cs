@@ -18,7 +18,7 @@ namespace PigPayV01
         // Datenbankverbindung einrichten
         SqlConnectionStringBuilder Con = new SqlConnectionStringBuilder
         {
-          DataSource = "W11-WORK23\\SQLEXPRESS", // Ändern entsprechend der Datenbankkonfiguration
+          DataSource = "NOTEBOOK-JANIK\\SQLEXPRESS", // Ändern entsprechend der Datenbankkonfiguration
           InitialCatalog = "PigPayData",
           IntegratedSecurity = true,
           TrustServerCertificate = true
@@ -41,22 +41,37 @@ namespace PigPayV01
             return;
           }
 
-          // Kontostand aktualisieren
-          string updateQuery = "UPDATE BenutzerInformationen SET Guthaben = Guthaben + @Betrag WHERE Kontonummer = @Kontonummer";
-          using (SqlCommand cmd = new SqlCommand(updateQuery, connection))
-          {
-            cmd.Parameters.AddWithValue("@Betrag", betrag);
-            cmd.Parameters.AddWithValue("@Kontonummer", kontonummer);
+          // Begin a new transaction
+          SqlTransaction transaction = connection.BeginTransaction();
 
-            int rowsAffected = cmd.ExecuteNonQuery();
-            if (rowsAffected > 0)
+          try
+          {
+            // Kontostand aktualisieren
+            string updateQuery = "UPDATE BenutzerInformationen SET Guthaben = Guthaben + @Betrag WHERE Kontonummer = @AccNummer";
+            using (SqlCommand cmd = new SqlCommand(updateQuery, connection, transaction))
             {
-              MessageBox.Show("Überweisung erfolgreich!", "Erfolg", MessageBoxButtons.OK, MessageBoxIcon.Information);
+              cmd.Parameters.AddWithValue("@Betrag", betrag);
+              cmd.Parameters.AddWithValue("@AccNummer", kontonummer);
+
+              int rowsAffected = cmd.ExecuteNonQuery();
+              if (rowsAffected > 0)
+              {
+                MessageBox.Show("Überweisung erfolgreich!", "Erfolg", MessageBoxButtons.OK, MessageBoxIcon.Information);
+              }
+              else
+              {
+                MessageBox.Show("Kontonummer nicht gefunden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              }
             }
-            else
-            {
-              MessageBox.Show("Kontonummer nicht gefunden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            // Commit the transaction
+            transaction.Commit();
+          }
+          catch (Exception ex)
+          {
+            // Rollback the transaction in case of an error
+            transaction.Rollback();
+            MessageBox.Show("Ein Fehler ist aufgetreten: " + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
           }
         }
       }

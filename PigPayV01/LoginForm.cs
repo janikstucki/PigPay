@@ -15,13 +15,17 @@ namespace PigPayV01
       PasswortTBX.Text = "Passwort";
     }
 
+    private void Form1_Load(object sender, EventArgs e)
+    {
+    }
+
     private void OnAnmelden(object sender, EventArgs e)
     {
       try
       {
         SqlConnectionStringBuilder Con = new SqlConnectionStringBuilder
         {
-          DataSource = "W11-WORK23\\SQLEXPRESS",
+          DataSource = "NOTEBOOK-JANIK\\SQLEXPRESS",
           InitialCatalog = "PigPayData",
           IntegratedSecurity = true,
           TrustServerCertificate = true
@@ -30,6 +34,9 @@ namespace PigPayV01
         using (SqlConnection connection = new SqlConnection(Con.ConnectionString))
         {
           connection.Open();
+
+          string kontonummer = UsernameTBX.Text;
+          string passwort = PasswortTBX.Text;
 
           string query = "SELECT COUNT(*) FROM BenutzerInformationen WHERE Kontonummer = @Kontonummer AND Passwort = @Passwort";
           using (SqlCommand cmd = new SqlCommand(query, connection))

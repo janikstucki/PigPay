@@ -1,3 +1,4 @@
+
 use master
 go
 drop database if exists PigPayData
@@ -32,7 +33,6 @@ create table Buchung (
 	Datum  Date,
 	Betrag integer
 	)
-
 
 
 
