@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.SqlClient;
+using System.Data.OleDb;
 using System.Windows.Forms;
 
 namespace PigPayV01
@@ -25,15 +25,7 @@ namespace PigPayV01
     {
       try
       {
-        SqlConnectionStringBuilder Con = new SqlConnectionStringBuilder
-        {
-          DataSource = "W11-WORK23\\SQLEXPRESS", // Ändern!!!  W11-WORK23\\SQLEXPRESS    NOTEBOOK-JANIK\\SQLEXPRESS
-          InitialCatalog = "PigPayData",
-          IntegratedSecurity = true,
-          TrustServerCertificate = true
-        };
-
-        using (SqlConnection connection = new SqlConnection(Con.ConnectionString))
+        using (OleDbConnection connection = new OleDbConnection(Program.ConnectStringBuilder.ConnectionString))
         {
           connection.Open();
 
@@ -41,7 +33,7 @@ namespace PigPayV01
           string passwort = PasswortTBX.Text;
 
           string query = "SELECT COUNT(*) FROM BenutzerInformationen WHERE Kontonummer = @Kontonummer AND Passwort = @Passwort";
-          using (SqlCommand cmd = new SqlCommand(query, connection))
+          using (OleDbCommand cmd = new OleDbCommand(query, connection))
           {
             cmd.Parameters.AddWithValue("@Kontonummer", kontonummer);
             cmd.Parameters.AddWithValue("@Passwort", passwort);

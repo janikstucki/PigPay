@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.SqlClient;
+using System.Data.OleDb;
 using System.Windows.Forms;
 
 namespace PigPayV01
@@ -16,15 +16,8 @@ namespace PigPayV01
       try
       {
         // Datenbankverbindung einrichten
-        SqlConnectionStringBuilder Con = new SqlConnectionStringBuilder
-        {
-          DataSource = "W11-WORK23\\SQLEXPRESS", // Ändern!!!  W11-WORK23\\SQLEXPRESS    NOTEBOOK-JANIK\\SQLEXPRESS
-          InitialCatalog = "PigPayData",
-          IntegratedSecurity = true,
-          TrustServerCertificate = true
-        };
 
-        using (SqlConnection connection = new SqlConnection(Con.ConnectionString))
+        using (OleDbConnection connection = new OleDbConnection(Program.ConnectStringBuilder.ConnectionString))
         {
           connection.Open();
 
@@ -41,7 +34,7 @@ namespace PigPayV01
             return;
           }
 
-          SqlTransaction transaction = connection.BeginTransaction();
+          OleDbTransaction transaction = connection.BeginTransaction();
 
           try
           {
@@ -50,7 +43,7 @@ namespace PigPayV01
             //Geld abziehen
             //string updateQuery2 = "UPDATE BenutzerInformationen SET Guthaben = Guthaben - @Betrag WHERE Kontonummer != @AccNummer";
 
-            using (SqlCommand cmd = new SqlCommand(updateQuery, connection, transaction))
+            using (OleDbCommand cmd = new OleDbCommand(updateQuery, connection, transaction))
             {
               cmd.Parameters.AddWithValue("@Betrag", betrag);
               cmd.Parameters.AddWithValue("@AccNummer", kontonummer);
