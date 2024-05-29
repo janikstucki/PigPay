@@ -16,10 +16,10 @@ namespace PigPayV01
   {
     private string KontoNummer;
 
-    public HomeForm(string HKontonummer)
+    public HomeForm(string HomeKontonummer)
     {
       InitializeComponent();
-      this.KontoNummer = HKontonummer;
+      this.KontoNummer = HomeKontonummer;
     }
 
     private void GreetLBL_Click(object sender, EventArgs e)
