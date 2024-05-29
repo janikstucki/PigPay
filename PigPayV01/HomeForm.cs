@@ -24,7 +24,17 @@ namespace PigPayV01
 
     private void GreetLBL_Click(object sender, EventArgs e)
     {
-     GreetLBL.Text = this.KontoNummer;
+      using (OleDbConnection connection = new OleDbConnection(Program.ConnectStringBuilder.ConnectionString))
+      {
+        string Vorname = string.Empty;
+        connection.Open();
+        string query = "SELECT Vorname FROM BenutzerInformationen WHERE Kontonummer = @HomeKontonummer";
+        using (OleDbCommand cmd = new OleDbCommand(query, connection))
+        {
+          cmd.Parameters.AddWithValue("@Vorname", Vorname);
+        }
+        GreetLBL.Text = Vorname;
+      }
     }
         private void HomeForm_Load(object sender, EventArgs e)
         {
