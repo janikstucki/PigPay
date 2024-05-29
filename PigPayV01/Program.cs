@@ -20,7 +20,8 @@ namespace PigPayV01
       loginForm.ShowDialog();
       if (loginForm.DialogResult == DialogResult.OK)
       {
-        Application.Run(new HomeForm());
+        string PKontonummer = loginForm.kontonummer;
+        Application.Run(new HomeForm(PKontonummer));
       }
     }
   }

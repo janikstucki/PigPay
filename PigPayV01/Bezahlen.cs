@@ -18,7 +18,7 @@ namespace PigPayV01
         // Datenbankverbindung einrichten
         SqlConnectionStringBuilder Con = new SqlConnectionStringBuilder
         {
-          DataSource = "NOTEBOOK-JANIK\\SQLEXPRESS", // Ändern entsprechend der Datenbankkonfiguration
+          DataSource = "W11-WORK23\\SQLEXPRESS", // Ändern!!!  W11-WORK23\\SQLEXPRESS    NOTEBOOK-JANIK\\SQLEXPRESS
           InitialCatalog = "PigPayData",
           IntegratedSecurity = true,
           TrustServerCertificate = true
@@ -41,13 +41,15 @@ namespace PigPayV01
             return;
           }
 
-          // Begin a new transaction
           SqlTransaction transaction = connection.BeginTransaction();
 
           try
           {
             // Kontostand aktualisieren
             string updateQuery = "UPDATE BenutzerInformationen SET Guthaben = Guthaben + @Betrag WHERE Kontonummer = @AccNummer";
+            //Geld abziehen
+            //string updateQuery2 = "UPDATE BenutzerInformationen SET Guthaben = Guthaben - @Betrag WHERE Kontonummer != @AccNummer";
+
             using (SqlCommand cmd = new SqlCommand(updateQuery, connection, transaction))
             {
               cmd.Parameters.AddWithValue("@Betrag", betrag);
@@ -64,12 +66,10 @@ namespace PigPayV01
               }
             }
 
-            // Commit the transaction
             transaction.Commit();
           }
           catch (Exception ex)
           {
-            // Rollback the transaction in case of an error
             transaction.Rollback();
             MessageBox.Show("Ein Fehler ist aufgetreten: " + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
           }

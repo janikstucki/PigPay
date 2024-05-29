@@ -32,7 +32,7 @@ create table Buchung (
 	to_acc integer,
 	Datum  Date,
 	Betrag integer
-	)
+)
 
 
 

@@ -6,6 +6,8 @@ namespace PigPayV01
 {
   public partial class LoginForm : Form
   {
+    public string kontonummer { get; private set; }
+
     private bool errorMessageShown = false; // Variable, um zu verfolgen, ob die Fehlermeldung bereits angezeigt wurde
 
     public LoginForm()
@@ -25,7 +27,7 @@ namespace PigPayV01
       {
         SqlConnectionStringBuilder Con = new SqlConnectionStringBuilder
         {
-          DataSource = "NOTEBOOK-JANIK\\SQLEXPRESS",
+          DataSource = "W11-WORK23\\SQLEXPRESS", // Ändern!!!  W11-WORK23\\SQLEXPRESS    NOTEBOOK-JANIK\\SQLEXPRESS
           InitialCatalog = "PigPayData",
           IntegratedSecurity = true,
           TrustServerCertificate = true
@@ -48,6 +50,7 @@ namespace PigPayV01
             if (userCount == 1)
             {
               this.DialogResult = DialogResult.OK;
+              
             }
             else
             {
@@ -79,6 +82,10 @@ namespace PigPayV01
     private void AnmeldenBTN_Click(object sender, EventArgs e)
     {
       OnAnmelden(sender, e);
+    }
+
+    private void pictureBox1_Click(object sender, EventArgs e)
+    {
     }
   }
 }
