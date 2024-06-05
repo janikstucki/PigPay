@@ -14,24 +14,33 @@ namespace PigPayV01
 {
   public partial class HomeForm : Form
   {
-    private string KontoNummer;
+    private string KontoNummer ;
 
     public HomeForm(string HomeKontonummer)
     {
       InitializeComponent();
+      KontoNummer = HomeKontonummer;
 
     }
-
+    
     private void GreetLBL_Click(object sender, EventArgs e)
     {
       using (OleDbConnection connection = new OleDbConnection(Program.ConnectStringBuilder.ConnectionString))
       {
         string Vorname = string.Empty;
         connection.Open();
-        string query = "SELECT Vorname FROM BenutzerInformationen WHERE Kontonummer = @KontoNummer";
+        string query = "SELECT Vorname FROM BenutzerInformationen WHERE Kontonummer = @Kontonummer";
+
         using (OleDbCommand cmd = new OleDbCommand(query, connection))
         {
           cmd.Parameters.AddWithValue("@Kontonummer", KontoNummer);
+
+          using (OleDbDataReader reader = cmd.ExecuteReader())
+          {
+            if(reader.Read()){
+              Vorname = reader["Vorname"].ToString();
+            }
+          }
         }
         GreetLBL.Text = Vorname;
       }

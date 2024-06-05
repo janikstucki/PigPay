@@ -36,6 +36,7 @@
       this.label1 = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
+      this.PasswortShowCHBX = new System.Windows.Forms.CheckBox();
       this.panel1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -52,6 +53,7 @@
       this.PasswortTBX.Name = "PasswortTBX";
       this.PasswortTBX.Size = new System.Drawing.Size(193, 22);
       this.PasswortTBX.TabIndex = 1;
+      this.PasswortTBX.UseSystemPasswordChar = true;
       // 
       // AnmeldenBTN
       // 
@@ -115,11 +117,23 @@
       this.label4.TabIndex = 5;
       this.label4.Text = "Passwort";
       // 
+      // PasswortShowCHBX
+      // 
+      this.PasswortShowCHBX.AutoSize = true;
+      this.PasswortShowCHBX.Location = new System.Drawing.Point(435, 349);
+      this.PasswortShowCHBX.Name = "PasswortShowCHBX";
+      this.PasswortShowCHBX.Size = new System.Drawing.Size(127, 20);
+      this.PasswortShowCHBX.TabIndex = 8;
+      this.PasswortShowCHBX.Text = "Passwort zeigen";
+      this.PasswortShowCHBX.UseVisualStyleBackColor = true;
+      this.PasswortShowCHBX.CheckedChanged += new System.EventHandler(this.PasswortShowCHBX_CheckedChanged);
+      // 
       // LoginForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(780, 646);
+      this.Controls.Add(this.PasswortShowCHBX);
       this.Controls.Add(this.label4);
       this.Controls.Add(this.label3);
       this.Controls.Add(this.panel1);
@@ -146,6 +160,7 @@
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.Label label4;
+    private System.Windows.Forms.CheckBox PasswortShowCHBX;
   }
 }
 

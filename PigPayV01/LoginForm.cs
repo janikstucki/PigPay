@@ -29,7 +29,7 @@ namespace PigPayV01
         {
           connection.Open();
 
-          string kontonummer = UsernameTBX.Text;
+          kontonummer = UsernameTBX.Text;
           string passwort = PasswortTBX.Text;
 
           string query = "SELECT COUNT(*) FROM BenutzerInformationen WHERE Kontonummer = @Kontonummer AND Passwort = @Passwort";
@@ -78,6 +78,21 @@ namespace PigPayV01
 
     private void pictureBox1_Click(object sender, EventArgs e)
     {
+    }
+
+    private void PasswortShowBTN_Click(object sender, EventArgs e)
+    {
+      
+    }
+
+    private void PasswortShowCHBX_CheckedChanged(object sender, EventArgs e)
+    {
+      if (PasswortTBX.UseSystemPasswordChar == false){
+        PasswortTBX.UseSystemPasswordChar = true;
+      }
+      else{
+        PasswortTBX.UseSystemPasswordChar = false;
+      }
     }
   }
 }
