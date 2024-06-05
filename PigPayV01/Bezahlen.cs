@@ -4,8 +4,10 @@ using System.Windows.Forms;
 
 namespace PigPayV01
 {
+
   public partial class EBankingForm : Form
   {
+
     public EBankingForm()
     {
       InitializeComponent();
@@ -15,6 +17,7 @@ namespace PigPayV01
     {
       try
       {
+      
         // Datenbankverbindung einrichten
 
         using (OleDbConnection connection = new OleDbConnection(Program.ConnectStringBuilder.ConnectionString))
@@ -57,9 +60,19 @@ namespace PigPayV01
               {
                 MessageBox.Show("Kontonummer nicht gefunden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
               }
+              //Schliesst die Buchung ab und überweist das Geld an @AccNummer
+              transaction.Commit();
             }
 
-            transaction.Commit();
+            //using (OleDbCommand cmd = new OleDbCommand(updateQuery2, connection, transaction))
+            //{
+            //  cmd.Parameters.AddWithValue("@Betrag", betrag);
+            //  cmd.Parameters.AddWithValue("@AccNummer", KontoNum);
+
+            //  int rowsAffected = cmd.ExecuteNonQuery();
+
+            //  transaction.Commit();
+            //}
           }
           catch (Exception ex)
           {

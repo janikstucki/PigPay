@@ -19,7 +19,7 @@ namespace PigPayV01
     public HomeForm(string HomeKontonummer)
     {
       InitializeComponent();
-      this.KontoNummer = HomeKontonummer;
+
     }
 
     private void GreetLBL_Click(object sender, EventArgs e)
@@ -28,13 +28,14 @@ namespace PigPayV01
       {
         string Vorname = string.Empty;
         connection.Open();
-        string query = "SELECT Vorname FROM BenutzerInformationen WHERE Kontonummer = @HomeKontonummer";
+        string query = "SELECT Vorname FROM BenutzerInformationen WHERE Kontonummer = @KontoNummer";
         using (OleDbCommand cmd = new OleDbCommand(query, connection))
         {
-          cmd.Parameters.AddWithValue("@Vorname", Vorname);
+          cmd.Parameters.AddWithValue("@Kontonummer", KontoNummer);
         }
         GreetLBL.Text = Vorname;
       }
+    
     }
         private void HomeForm_Load(object sender, EventArgs e)
         {
@@ -45,8 +46,8 @@ namespace PigPayV01
         {
 
           EBankingForm bezahlenFrom = new EBankingForm();
-          bezahlenFrom.ShowDialog();
-          this.Close();
+          bezahlenFrom.Show();
+          this.Hide();
 
 
         }

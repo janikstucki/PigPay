@@ -38,7 +38,6 @@
       // 
       // MainMenu
       // 
-      this.MainMenu.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
       this.MainMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
       this.MainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeToolStripMenuItem,
@@ -46,20 +45,21 @@
             this.hilfeToolStripMenuItem});
       this.MainMenu.Location = new System.Drawing.Point(0, 0);
       this.MainMenu.Name = "MainMenu";
-      this.MainMenu.Size = new System.Drawing.Size(1020, 33);
+      this.MainMenu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+      this.MainMenu.Size = new System.Drawing.Size(907, 28);
       this.MainMenu.TabIndex = 0;
       this.MainMenu.Text = "menuStrip1";
       // 
       // homeToolStripMenuItem
       // 
       this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-      this.homeToolStripMenuItem.Size = new System.Drawing.Size(77, 32);
+      this.homeToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
       this.homeToolStripMenuItem.Text = "Home";
       // 
       // eBankingToolStripMenuItem
       // 
       this.eBankingToolStripMenuItem.Name = "eBankingToolStripMenuItem";
-      this.eBankingToolStripMenuItem.Size = new System.Drawing.Size(107, 29);
+      this.eBankingToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
       this.eBankingToolStripMenuItem.Text = "E-Banking";
       this.eBankingToolStripMenuItem.Click += new System.EventHandler(this.OnEBankingClick);
       // 
@@ -67,28 +67,30 @@
       // 
       this.hilfeToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
       this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
-      this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(64, 32);
+      this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
       this.hilfeToolStripMenuItem.Text = "Hilfe";
       // 
       // GreetLBL
       // 
       this.GreetLBL.AutoSize = true;
+      this.GreetLBL.BackColor = System.Drawing.SystemColors.Control;
       this.GreetLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.GreetLBL.Location = new System.Drawing.Point(435, 7);
+      this.GreetLBL.Location = new System.Drawing.Point(387, 6);
       this.GreetLBL.Name = "GreetLBL";
-      this.GreetLBL.Size = new System.Drawing.Size(126, 29);
+      this.GreetLBL.Size = new System.Drawing.Size(105, 25);
       this.GreetLBL.TabIndex = 1;
       this.GreetLBL.Text = "Guten Tag";
       this.GreetLBL.Click += new System.EventHandler(this.GreetLBL_Click);
       // 
       // HomeForm
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1020, 533);
+      this.ClientSize = new System.Drawing.Size(907, 426);
       this.Controls.Add(this.GreetLBL);
       this.Controls.Add(this.MainMenu);
       this.MainMenuStrip = this.MainMenu;
+      this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.Name = "HomeForm";
       this.Text = "Home - PigPay";
       this.MainMenu.ResumeLayout(false);

@@ -13,7 +13,7 @@ namespace PigPayV01
     public static OleDbConnectionStringBuilder ConnectStringBuilder = new OleDbConnectionStringBuilder
     {
       Provider = "Microsoft.ACE.OLEDB.12.0",
-      DataSource = "..\\..\\Datenbank.accdb" // Ändern!!!  W11-WORK23\\SQLEXPRESS    NOTEBOOK-JANIK\\SQLEXPRESS
+      DataSource = "..\\..\\Datenbank.accdb"
     };
     
     //public static SqlConnectionStringBuilder ConnectString = new SqlConnectionStringBuilder
