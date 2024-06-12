@@ -53,7 +53,7 @@ namespace PigPayV01
           }
         }
         GreetLBL.Text = "Guten Tag " + Vorname;
-        AktKontostandLBL.Text = Kontostand;
+        AktKontostandLBL.Text = Kontostand + " CHF";
       }
     }
     

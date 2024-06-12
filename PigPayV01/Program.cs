@@ -23,7 +23,7 @@ namespace PigPayV01
     //  IntegratedSecurity = true,
     //  TrustServerCertificate = true
     //};
-
+    
     /// <summary>
     /// Der Haupteinstiegspunkt für die Anwendung.
     /// </summary>

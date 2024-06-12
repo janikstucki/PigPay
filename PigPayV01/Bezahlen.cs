@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Windows.Forms;
 
@@ -6,7 +7,7 @@ namespace PigPayV01
 {
   public partial class EBankingForm : Form
   {
-    //public string EingelogteKontonummer { get; private set; }
+    //public string EingeloggteKontonummer { get; private set; }
     private string EingeloggteKontonummer;
     private double EingeloggterKontostand;
 
@@ -60,15 +61,15 @@ namespace PigPayV01
           try
           {
             // Betrag vom eingeloggten Konto abziehen
-            string updateQuery1 = "UPDATE BenutzerInformationen SET Guthaben = Guthaben - @Betrag WHERE Kontonummer = @EingelogteKontonummer";
+            string updateQuery1 = "UPDATE BenutzerInformationen SET Guthaben = Guthaben - @Betrag WHERE Kontonummer = @EingeloggteKontonummer";
 
             using (OleDbCommand cmd = new OleDbCommand(updateQuery1, connection, transaction))
             {
               cmd.Parameters.AddWithValue("@Betrag", betrag);
-              cmd.Parameters.AddWithValue("@EingelogteKontonummer", EingeloggteKontonummer);
+              cmd.Parameters.AddWithValue("@EingeloggteKontonummer", EingeloggteKontonummer);
 
               int rowsAffected = cmd.ExecuteNonQuery();
-              
+
               if (rowsAffected <= 0)
               {
                 MessageBox.Show("Fehler beim Abziehen des Betrags vom eingeloggten Konto.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -77,9 +78,9 @@ namespace PigPayV01
             }
 
             // Betrag zum Zielkonto hinzufügen
-            string updateQuery2 = "UPDATE BenutzerInformationen SET Guthaben = Guthaben + @Betrag WHERE Kontonummer = @ZielKontonummer";
+            string query = "UPDATE BenutzerInformationen SET Guthaben = Guthaben + @Betrag WHERE Kontonummer = @ZielKontonummer";
 
-            using (OleDbCommand cmd = new OleDbCommand(updateQuery2, connection, transaction))
+            using (OleDbCommand cmd = new OleDbCommand(query, connection, transaction))
             {
               cmd.Parameters.AddWithValue("@Betrag", betrag);
               cmd.Parameters.AddWithValue("@ZielKontonummer", zielKontonummer);
@@ -90,11 +91,50 @@ namespace PigPayV01
                 MessageBox.Show("Fehler beim Hinzufügen des Betrags zum Zielkonto.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
               }
-            }
 
-            // Transaktion abschließen
-            transaction.Commit();
-            MessageBox.Show("Überweisung erfolgreich!", "Erfolg", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+              string LastTransactionSenden = "INSERT INTO Buchung(fk_Id, to_acc, Betrag) VALUES(@EK, @ZielKontonummer, @Betrag)";
+
+              using (OleDbCommand cmd2 = new OleDbCommand(LastTransactionSenden, connection, transaction))
+              {
+                // Add parameters to the command
+                cmd2.Parameters.AddWithValue("@EK", EingeloggteKontonummer);
+                cmd2.Parameters.AddWithValue("@ZielKontonummer", zielKontonummer);
+                cmd2.Parameters.AddWithValue("@Betrag", betrag);
+
+                try
+                {
+                  // Execute the command
+                  int rowsAffectedLST = cmd2.ExecuteNonQuery();
+
+                  // Check the result
+                  if (rowsAffected > 0)
+                  {
+                    Console.WriteLine("Insert successful.");
+                  }
+                  else
+                  {
+                    Console.WriteLine("No rows inserted.");
+                  }
+                }
+                catch (Exception ex)
+                {
+                  MessageBox.Show("Ein Fehler ist aufgetreten: " + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+              }
+
+              //string LastTransactionSenden = "UPDATE Buchung SET fk_Id = @EK and to_acc = @ZielKontonummer and Betrag = @Betrag";
+              //insert into Fahrzeug(Marke, Typ, NeuPreis, Jahrgang, Occasion)
+              //values('Renault', 'Talisman', 45000.00, 2017, 0)
+
+
+
+              // Transaktion abschließen
+              transaction.Commit();
+              MessageBox.Show("Überweisung erfolgreich!", "Erfolg", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
           }
           catch (Exception ex)
           {
