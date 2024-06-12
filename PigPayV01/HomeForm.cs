@@ -55,7 +55,7 @@ namespace PigPayV01
         private void OnEBankingClick(object sender, EventArgs e)
         {
 
-          EBankingForm bezahlenFrom = new EBankingForm();
+          EBankingForm bezahlenFrom = new EBankingForm(KontoNummer);
           bezahlenFrom.Show();
           this.Hide();
 

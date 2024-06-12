@@ -6,11 +6,13 @@ namespace PigPayV01
 {
   public partial class EBankingForm : Form
   {
-    public string EingelogteKontonummer { get; private set; }
+    //public string EingelogteKontonummer { get; private set; }
+    private string EingelogteKontonummer;
 
-    public EBankingForm()
+    public EBankingForm(string EKontonummer)
     {
       InitializeComponent();
+      EingelogteKontonummer = EKontonummer;
     }
 
     // Methode zum Überweisen von Geld

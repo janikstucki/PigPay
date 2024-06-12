@@ -33,6 +33,7 @@
       this.eBankingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.GreetLBL = new System.Windows.Forms.Label();
+      this.label1 = new System.Windows.Forms.Label();
       this.MainMenu.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -75,17 +76,27 @@
       this.GreetLBL.AutoSize = true;
       this.GreetLBL.BackColor = System.Drawing.SystemColors.Control;
       this.GreetLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.GreetLBL.Location = new System.Drawing.Point(387, 6);
+      this.GreetLBL.Location = new System.Drawing.Point(394, 40);
       this.GreetLBL.Name = "GreetLBL";
       this.GreetLBL.Size = new System.Drawing.Size(105, 25);
       this.GreetLBL.TabIndex = 1;
       this.GreetLBL.Text = "Guten Tag";
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(374, 188);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(44, 16);
+      this.label1.TabIndex = 2;
+      this.label1.Text = "label1";
       // 
       // HomeForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(907, 426);
+      this.Controls.Add(this.label1);
       this.Controls.Add(this.GreetLBL);
       this.Controls.Add(this.MainMenu);
       this.MainMenuStrip = this.MainMenu;
@@ -106,5 +117,6 @@
     private System.Windows.Forms.ToolStripMenuItem eBankingToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
     private System.Windows.Forms.Label GreetLBL;
+    private System.Windows.Forms.Label label1;
   }
 }
