@@ -30,16 +30,20 @@
     {
       this.MainMenu = new System.Windows.Forms.MenuStrip();
       this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.AusloggenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.eBankingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.GreetLBL = new System.Windows.Forms.Label();
       this.AktKontostandLBL = new System.Windows.Forms.Label();
       this.panel1 = new System.Windows.Forms.Panel();
       this.label1 = new System.Windows.Forms.Label();
-      this.AusloggenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.panel2 = new System.Windows.Forms.Panel();
+      this.label2 = new System.Windows.Forms.Label();
+      this.LztTransaktionLBL = new System.Windows.Forms.Label();
       this.MainMenu.SuspendLayout();
       this.panel1.SuspendLayout();
+      this.panel2.SuspendLayout();
       this.SuspendLayout();
       // 
       // MainMenu
@@ -52,7 +56,7 @@
       this.MainMenu.Location = new System.Drawing.Point(0, 0);
       this.MainMenu.Name = "MainMenu";
       this.MainMenu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-      this.MainMenu.Size = new System.Drawing.Size(907, 30);
+      this.MainMenu.Size = new System.Drawing.Size(907, 28);
       this.MainMenu.TabIndex = 0;
       this.MainMenu.Text = "menuStrip1";
       // 
@@ -62,8 +66,23 @@
             this.AusloggenToolStripMenuItem,
             this.ExitToolStripMenuItem});
       this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-      this.homeToolStripMenuItem.Size = new System.Drawing.Size(64, 26);
+      this.homeToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
       this.homeToolStripMenuItem.Text = "Home";
+      // 
+      // AusloggenToolStripMenuItem
+      // 
+      this.AusloggenToolStripMenuItem.Name = "AusloggenToolStripMenuItem";
+      this.AusloggenToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+      this.AusloggenToolStripMenuItem.Text = "Ausloggen";
+      this.AusloggenToolStripMenuItem.Click += new System.EventHandler(this.OnAusloggenClick);
+      // 
+      // ExitToolStripMenuItem
+      // 
+      this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
+      this.ExitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+      this.ExitToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+      this.ExitToolStripMenuItem.Text = "Exit";
+      this.ExitToolStripMenuItem.Click += new System.EventHandler(this.OnExitClick);
       // 
       // eBankingToolStripMenuItem
       // 
@@ -119,26 +138,42 @@
       this.label1.TabIndex = 3;
       this.label1.Text = "Ihr aktueller Kontostand:";
       // 
-      // AusloggenToolStripMenuItem
+      // panel2
       // 
-      this.AusloggenToolStripMenuItem.Name = "AusloggenToolStripMenuItem";
-      this.AusloggenToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-      this.AusloggenToolStripMenuItem.Text = "Ausloggen";
-      this.AusloggenToolStripMenuItem.Click += new System.EventHandler(this.OnAusloggenClick);
+      this.panel2.BackColor = System.Drawing.SystemColors.ButtonShadow;
+      this.panel2.Controls.Add(this.LztTransaktionLBL);
+      this.panel2.Controls.Add(this.label2);
+      this.panel2.Location = new System.Drawing.Point(714, 64);
+      this.panel2.Name = "panel2";
+      this.panel2.Size = new System.Drawing.Size(181, 350);
+      this.panel2.TabIndex = 4;
+      this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
       // 
-      // ExitToolStripMenuItem
+      // label2
       // 
-      this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-      this.ExitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-      this.ExitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-      this.ExitToolStripMenuItem.Text = "Exit";
-      this.ExitToolStripMenuItem.Click += new System.EventHandler(this.OnExitClick);
+      this.label2.AutoSize = true;
+      this.label2.Location = new System.Drawing.Point(27, 33);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(131, 16);
+      this.label2.TabIndex = 3;
+      this.label2.Text = "Letzte Transaktionen";
+      // 
+      // LztTransaktionLBL
+      // 
+      this.LztTransaktionLBL.AutoSize = true;
+      this.LztTransaktionLBL.Location = new System.Drawing.Point(27, 59);
+      this.LztTransaktionLBL.Name = "LztTransaktionLBL";
+      this.LztTransaktionLBL.Size = new System.Drawing.Size(131, 16);
+      this.LztTransaktionLBL.TabIndex = 4;
+      this.LztTransaktionLBL.Text = "Letzte Transaktionen";
+      this.LztTransaktionLBL.Click += new System.EventHandler(this.LztTransaktionLBL_Click);
       // 
       // HomeForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(907, 426);
+      this.Controls.Add(this.panel2);
       this.Controls.Add(this.panel1);
       this.Controls.Add(this.GreetLBL);
       this.Controls.Add(this.MainMenu);
@@ -150,6 +185,8 @@
       this.MainMenu.PerformLayout();
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
+      this.panel2.ResumeLayout(false);
+      this.panel2.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -167,5 +204,8 @@
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.ToolStripMenuItem AusloggenToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
+    private System.Windows.Forms.Panel panel2;
+    private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.Label LztTransaktionLBL;
   }
 }

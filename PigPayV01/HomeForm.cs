@@ -14,13 +14,14 @@ namespace PigPayV01
 {
   public partial class HomeForm : Form
   {
-    private string KontoNummer ;
+    private string EingeloggteKontonummer ;
     private string Kontostand = string.Empty;
+    private string LetzteTransaktion = string.Empty;
 
     public HomeForm(string HomeKontonummer)
     {
       InitializeComponent();
-      KontoNummer = HomeKontonummer;
+      EingeloggteKontonummer = HomeKontonummer;
       using (OleDbConnection connection = new OleDbConnection(Program.ConnectStringBuilder.ConnectionString))
       {
         string Vorname = string.Empty;
@@ -29,7 +30,7 @@ namespace PigPayV01
 
         using (OleDbCommand cmd = new OleDbCommand(query, connection))
         {
-          cmd.Parameters.AddWithValue("@Kontonummer", KontoNummer);
+          cmd.Parameters.AddWithValue("@Kontonummer", EingeloggteKontonummer);
 
           using (OleDbDataReader reader = cmd.ExecuteReader())
           {
@@ -42,7 +43,7 @@ namespace PigPayV01
         string query2 = "SELECT Guthaben FROM BenutzerInformationen WHERE Kontonummer = @Kontonummer";
         using (OleDbCommand cmd = new OleDbCommand(query2, connection))
         {
-          cmd.Parameters.AddWithValue("@Kontonummer", KontoNummer);
+          cmd.Parameters.AddWithValue("@Kontonummer", EingeloggteKontonummer);
 
           using (OleDbDataReader reader = cmd.ExecuteReader())
           {
@@ -52,11 +53,42 @@ namespace PigPayV01
             }
           }
         }
+        string query3 = "SELECT to_acc, Betrag FROM Buchung WHERE Kontonummer = @Kontonummer";
+        using (OleDbCommand cmd = new OleDbCommand(query3, connection))
+        {
+          cmd.Parameters.AddWithValue("@Kontonummer", EingeloggteKontonummer);
+
+          using (OleDbDataReader reader = cmd.ExecuteReader())
+          {
+            if (reader.Read())
+            {
+              string to_acc = reader["to_acc"].ToString();
+              string Betrag = reader["Betrag"].ToString();
+              LetzteTransaktion =  "An " + to_acc + ", " + Betrag + " CHF";
+            }
+          }
+        }
+
         GreetLBL.Text = "Guten Tag " + Vorname;
         AktKontostandLBL.Text = Kontostand + " CHF";
+        LztTransaktionLBL.Text = LetzteTransaktion;
       }
     }
-    
+    //private void SELECT_OLEDB(string query, OleDbConnection connection)
+    //{
+    //  using (OleDbCommand cmd = new OleDbCommand(query, connection))
+    //  {
+    //    cmd.Parameters.AddWithValue("@Kontonummer", KontoNummer);
+
+    //    using (OleDbDataReader reader = cmd.ExecuteReader())
+    //    {
+    //      if (reader.Read())
+    //      {
+    //        Kontostand = reader["Guthaben"].ToString();
+    //      }
+    //    }
+    //  }
+    //}
     private void GreetLBL_Click(object sender, EventArgs e)
     {
      
@@ -69,7 +101,7 @@ namespace PigPayV01
 
         private void OnEBankingClick(object sender, EventArgs e)
         {
-          EBankingForm bezahlenFrom = new EBankingForm(KontoNummer, Kontostand);
+          EBankingForm bezahlenFrom = new EBankingForm(EingeloggteKontonummer, Kontostand);
           bezahlenFrom.Show();
           this.Hide();
         }
@@ -91,6 +123,18 @@ namespace PigPayV01
     {
       this.Close();
       
+    }
+
+    private void panel2_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
+
+    
+
+    private void LztTransaktionLBL_Click(object sender, EventArgs e)
+    {
+
     }
   }
 }
