@@ -37,6 +37,7 @@
       this.label3 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
       this.PasswortShowCHBX = new System.Windows.Forms.CheckBox();
+      this.panel2 = new System.Windows.Forms.Panel();
       this.panel1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -69,19 +70,20 @@
       // panel1
       // 
       this.panel1.BackColor = System.Drawing.Color.LightPink;
+      this.panel1.Controls.Add(this.panel2);
       this.panel1.Controls.Add(this.label2);
       this.panel1.Controls.Add(this.label1);
       this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
       this.panel1.Location = new System.Drawing.Point(0, 0);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(224, 646);
+      this.panel1.Size = new System.Drawing.Size(288, 646);
       this.panel1.TabIndex = 3;
       // 
       // label2
       // 
       this.label2.AutoSize = true;
       this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label2.Location = new System.Drawing.Point(55, 61);
+      this.label2.Location = new System.Drawing.Point(74, 61);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(96, 38);
       this.label2.TabIndex = 1;
@@ -91,7 +93,7 @@
       // 
       this.label1.AutoSize = true;
       this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label1.Location = new System.Drawing.Point(29, 9);
+      this.label1.Location = new System.Drawing.Point(48, 9);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(160, 51);
       this.label1.TabIndex = 0;
@@ -128,6 +130,14 @@
       this.PasswortShowCHBX.UseVisualStyleBackColor = true;
       this.PasswortShowCHBX.CheckedChanged += new System.EventHandler(this.PasswortShowCHBX_CheckedChanged);
       // 
+      // panel2
+      // 
+      this.panel2.BackgroundImage = global::PigPayV01.Properties.Resources.LogoKleiner_removebg_preview;
+      this.panel2.Location = new System.Drawing.Point(3, 145);
+      this.panel2.Name = "panel2";
+      this.panel2.Size = new System.Drawing.Size(327, 295);
+      this.panel2.TabIndex = 2;
+      // 
       // LoginForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -161,6 +171,7 @@
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.CheckBox PasswortShowCHBX;
+    private System.Windows.Forms.Panel panel2;
   }
 }
 

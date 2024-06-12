@@ -60,27 +60,28 @@
       this.MainMenu.Location = new System.Drawing.Point(0, 0);
       this.MainMenu.Name = "MainMenu";
       this.MainMenu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-      this.MainMenu.Size = new System.Drawing.Size(872, 30);
+      this.MainMenu.Size = new System.Drawing.Size(872, 28);
       this.MainMenu.TabIndex = 2;
       this.MainMenu.Text = "menuStrip1";
       // 
       // homeToolStripMenuItem
       // 
       this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-      this.homeToolStripMenuItem.Size = new System.Drawing.Size(64, 26);
+      this.homeToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
       this.homeToolStripMenuItem.Text = "Home";
+      this.homeToolStripMenuItem.Click += new System.EventHandler(this.OnHomeClick);
       // 
       // eBankingToolStripMenuItem
       // 
       this.eBankingToolStripMenuItem.Name = "eBankingToolStripMenuItem";
-      this.eBankingToolStripMenuItem.Size = new System.Drawing.Size(90, 26);
+      this.eBankingToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
       this.eBankingToolStripMenuItem.Text = "E-Banking";
       // 
       // hilfeToolStripMenuItem
       // 
       this.hilfeToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
       this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
-      this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(55, 26);
+      this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
       this.hilfeToolStripMenuItem.Text = "Hilfe";
       // 
       // GeldSendenAnTBX

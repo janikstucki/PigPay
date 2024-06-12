@@ -38,6 +38,11 @@ namespace PigPayV01
             return;
           }
 
+          if (GeldSendenAnTBX.Text == EingelogteKontonummer)
+          {
+            MessageBox.Show("Fehler bei der Transaktion! Sie können sich nicht selbst geld senden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+          }
           // Transaktion starten
           OleDbTransaction transaction = connection.BeginTransaction();
 
@@ -52,6 +57,7 @@ namespace PigPayV01
               cmd.Parameters.AddWithValue("@EingelogteKontonummer", EingelogteKontonummer);
 
               int rowsAffected = cmd.ExecuteNonQuery();
+              
               if (rowsAffected <= 0)
               {
                 MessageBox.Show("Fehler beim Abziehen des Betrags vom eingeloggten Konto.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -90,6 +96,13 @@ namespace PigPayV01
       {
         MessageBox.Show("Ein Fehler ist aufgetreten: " + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
+    }
+
+    private void OnHomeClick(object sender, EventArgs e)
+    {
+      HomeForm homeFrom = new HomeForm(EingelogteKontonummer);
+      homeFrom.Show();
+      this.Close();
     }
   }
 }

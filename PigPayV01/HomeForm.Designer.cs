@@ -33,8 +33,13 @@
       this.eBankingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.GreetLBL = new System.Windows.Forms.Label();
+      this.AktKontostandLBL = new System.Windows.Forms.Label();
+      this.panel1 = new System.Windows.Forms.Panel();
       this.label1 = new System.Windows.Forms.Label();
+      this.AusloggenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.MainMenu.SuspendLayout();
+      this.panel1.SuspendLayout();
       this.SuspendLayout();
       // 
       // MainMenu
@@ -47,14 +52,17 @@
       this.MainMenu.Location = new System.Drawing.Point(0, 0);
       this.MainMenu.Name = "MainMenu";
       this.MainMenu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-      this.MainMenu.Size = new System.Drawing.Size(907, 28);
+      this.MainMenu.Size = new System.Drawing.Size(907, 30);
       this.MainMenu.TabIndex = 0;
       this.MainMenu.Text = "menuStrip1";
       // 
       // homeToolStripMenuItem
       // 
+      this.homeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AusloggenToolStripMenuItem,
+            this.ExitToolStripMenuItem});
       this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-      this.homeToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+      this.homeToolStripMenuItem.Size = new System.Drawing.Size(64, 26);
       this.homeToolStripMenuItem.Text = "Home";
       // 
       // eBankingToolStripMenuItem
@@ -82,21 +90,56 @@
       this.GreetLBL.TabIndex = 1;
       this.GreetLBL.Text = "Guten Tag";
       // 
+      // AktKontostandLBL
+      // 
+      this.AktKontostandLBL.AutoSize = true;
+      this.AktKontostandLBL.Location = new System.Drawing.Point(27, 59);
+      this.AktKontostandLBL.Name = "AktKontostandLBL";
+      this.AktKontostandLBL.Size = new System.Drawing.Size(129, 16);
+      this.AktKontostandLBL.TabIndex = 2;
+      this.AktKontostandLBL.Text = "Aktueller Kontostand";
+      this.AktKontostandLBL.Click += new System.EventHandler(this.AktKontostandLBL_Click);
+      // 
+      // panel1
+      // 
+      this.panel1.BackColor = System.Drawing.SystemColors.ButtonShadow;
+      this.panel1.Controls.Add(this.label1);
+      this.panel1.Controls.Add(this.AktKontostandLBL);
+      this.panel1.Location = new System.Drawing.Point(30, 64);
+      this.panel1.Name = "panel1";
+      this.panel1.Size = new System.Drawing.Size(181, 350);
+      this.panel1.TabIndex = 3;
+      // 
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(374, 188);
+      this.label1.Location = new System.Drawing.Point(17, 33);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(44, 16);
-      this.label1.TabIndex = 2;
-      this.label1.Text = "label1";
+      this.label1.Size = new System.Drawing.Size(148, 16);
+      this.label1.TabIndex = 3;
+      this.label1.Text = "Ihr aktueller Kontostand:";
+      // 
+      // AusloggenToolStripMenuItem
+      // 
+      this.AusloggenToolStripMenuItem.Name = "AusloggenToolStripMenuItem";
+      this.AusloggenToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+      this.AusloggenToolStripMenuItem.Text = "Ausloggen";
+      this.AusloggenToolStripMenuItem.Click += new System.EventHandler(this.OnAusloggenClick);
+      // 
+      // ExitToolStripMenuItem
+      // 
+      this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
+      this.ExitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+      this.ExitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+      this.ExitToolStripMenuItem.Text = "Exit";
+      this.ExitToolStripMenuItem.Click += new System.EventHandler(this.OnExitClick);
       // 
       // HomeForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(907, 426);
-      this.Controls.Add(this.label1);
+      this.Controls.Add(this.panel1);
       this.Controls.Add(this.GreetLBL);
       this.Controls.Add(this.MainMenu);
       this.MainMenuStrip = this.MainMenu;
@@ -105,6 +148,8 @@
       this.Text = "Home - PigPay";
       this.MainMenu.ResumeLayout(false);
       this.MainMenu.PerformLayout();
+      this.panel1.ResumeLayout(false);
+      this.panel1.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -117,6 +162,10 @@
     private System.Windows.Forms.ToolStripMenuItem eBankingToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
     private System.Windows.Forms.Label GreetLBL;
+    private System.Windows.Forms.Label AktKontostandLBL;
+    private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.ToolStripMenuItem AusloggenToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
   }
 }

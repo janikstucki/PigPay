@@ -23,6 +23,7 @@ namespace PigPayV01
       using (OleDbConnection connection = new OleDbConnection(Program.ConnectStringBuilder.ConnectionString))
       {
         string Vorname = string.Empty;
+        string Kontostand = string.Empty;
         connection.Open();
         string query = "SELECT Vorname FROM BenutzerInformationen WHERE Kontonummer = @Kontonummer";
 
@@ -38,7 +39,21 @@ namespace PigPayV01
             }
           }
         }
+        string query2 = "SELECT Guthaben FROM BenutzerInformationen WHERE Kontonummer = @Kontonummer";
+        using (OleDbCommand cmd = new OleDbCommand(query2, connection))
+        {
+          cmd.Parameters.AddWithValue("@Kontonummer", KontoNummer);
+
+          using (OleDbDataReader reader = cmd.ExecuteReader())
+          {
+            if (reader.Read())
+            {
+              Kontostand = reader["Guthaben"].ToString();
+            }
+          }
+        }
         GreetLBL.Text = "Guten Tag " + Vorname;
+        AktKontostandLBL.Text = Kontostand;
       }
     }
     
@@ -54,14 +69,29 @@ namespace PigPayV01
 
         private void OnEBankingClick(object sender, EventArgs e)
         {
-
           EBankingForm bezahlenFrom = new EBankingForm(KontoNummer);
           bezahlenFrom.Show();
           this.Hide();
-
-
         }
-      }
-    
+
+    private void AktKontostandLBL_Click(object sender, EventArgs e)
+    {
+    }
+
+    private void OnAusloggenClick(object sender, EventArgs e)
+    {
+      LoginForm loginForm = new LoginForm();
+      loginForm.Show();
+      this.Hide();
+
+      //if (loginForm.Visible) { this.Close(); }
+    }
+
+    private void OnExitClick(object sender, EventArgs e)
+    {
+      this.Close();
+      
+    }
   }
+}
 
