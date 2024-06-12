@@ -20,11 +20,6 @@ namespace PigPayV01
     {
       InitializeComponent();
       KontoNummer = HomeKontonummer;
-
-    }
-    
-    private void GreetLBL_Click(object sender, EventArgs e)
-    {
       using (OleDbConnection connection = new OleDbConnection(Program.ConnectStringBuilder.ConnectionString))
       {
         string Vorname = string.Empty;
@@ -37,13 +32,19 @@ namespace PigPayV01
 
           using (OleDbDataReader reader = cmd.ExecuteReader())
           {
-            if(reader.Read()){
+            if (reader.Read())
+            {
               Vorname = reader["Vorname"].ToString();
             }
           }
         }
-        GreetLBL.Text = Vorname;
+        GreetLBL.Text = "Guten Tag " + Vorname;
       }
+    }
+    
+    private void GreetLBL_Click(object sender, EventArgs e)
+    {
+     
     
     }
         private void HomeForm_Load(object sender, EventArgs e)

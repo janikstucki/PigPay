@@ -80,7 +80,6 @@
       this.GreetLBL.Size = new System.Drawing.Size(105, 25);
       this.GreetLBL.TabIndex = 1;
       this.GreetLBL.Text = "Guten Tag";
-      this.GreetLBL.Click += new System.EventHandler(this.GreetLBL_Click);
       // 
       // HomeForm
       // 
