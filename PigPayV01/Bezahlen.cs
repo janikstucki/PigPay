@@ -7,12 +7,15 @@ namespace PigPayV01
   public partial class EBankingForm : Form
   {
     //public string EingelogteKontonummer { get; private set; }
-    private string EingelogteKontonummer;
+    private string EingeloggteKontonummer;
+    private double EingeloggterKontostand;
 
-    public EBankingForm(string EKontonummer)
+
+    public EBankingForm(string EKontonummer, string KontoStand)
     {
       InitializeComponent();
-      EingelogteKontonummer = EKontonummer;
+      EingeloggteKontonummer = EKontonummer;
+      EingeloggterKontostand = Convert.ToDouble(KontoStand);
     }
 
     // Methode zum Überweisen von Geld
@@ -26,21 +29,29 @@ namespace PigPayV01
           connection.Open();
 
           // Kontonummer und Betrag aus TextBoxen lesen
+
+          //Überprüft ob die Geld Sendenadresse in eine Variable konventiert werden konnte.
           if (!int.TryParse(GeldSendenAnTBX.Text, out int zielKontonummer))
           {
             MessageBox.Show("Bitte geben Sie eine gültige Kontonummer ein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
           }
-
+          //Überprüft ob der betrag grösser als 0 ist.
           if (!double.TryParse(GeldSendenBetragTBX.Text, out double betrag) || betrag <= 0)
           {
             MessageBox.Show("Bitte geben Sie einen gültigen Betrag ein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
           }
-
-          if (GeldSendenAnTBX.Text == EingelogteKontonummer)
+          //Überprüft ob die Sendeadresse eine andre als die eingeloggte ist.
+          if (GeldSendenAnTBX.Text == EingeloggteKontonummer)
           {
-            MessageBox.Show("Fehler bei der Transaktion! Sie können sich nicht selbst geld senden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Fehler bei der Transaktion! Sie können sich nicht selbst Geld senden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+          }
+          //Überprüft ob der Betrag überhaupt auf den eingeloggten Konto vorhanden ist.
+          if (EingeloggterKontostand < betrag)
+          {
+            MessageBox.Show("Fehler bei der Transaktion! Saldo zu klein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
           }
           // Transaktion starten
@@ -54,7 +65,7 @@ namespace PigPayV01
             using (OleDbCommand cmd = new OleDbCommand(updateQuery1, connection, transaction))
             {
               cmd.Parameters.AddWithValue("@Betrag", betrag);
-              cmd.Parameters.AddWithValue("@EingelogteKontonummer", EingelogteKontonummer);
+              cmd.Parameters.AddWithValue("@EingelogteKontonummer", EingeloggteKontonummer);
 
               int rowsAffected = cmd.ExecuteNonQuery();
               
@@ -100,7 +111,7 @@ namespace PigPayV01
 
     private void OnHomeClick(object sender, EventArgs e)
     {
-      HomeForm homeFrom = new HomeForm(EingelogteKontonummer);
+      HomeForm homeFrom = new HomeForm(EingeloggteKontonummer);
       homeFrom.Show();
       this.Close();
     }

@@ -15,6 +15,7 @@ namespace PigPayV01
   public partial class HomeForm : Form
   {
     private string KontoNummer ;
+    private string Kontostand = string.Empty;
 
     public HomeForm(string HomeKontonummer)
     {
@@ -23,7 +24,6 @@ namespace PigPayV01
       using (OleDbConnection connection = new OleDbConnection(Program.ConnectStringBuilder.ConnectionString))
       {
         string Vorname = string.Empty;
-        string Kontostand = string.Empty;
         connection.Open();
         string query = "SELECT Vorname FROM BenutzerInformationen WHERE Kontonummer = @Kontonummer";
 
@@ -69,7 +69,7 @@ namespace PigPayV01
 
         private void OnEBankingClick(object sender, EventArgs e)
         {
-          EBankingForm bezahlenFrom = new EBankingForm(KontoNummer);
+          EBankingForm bezahlenFrom = new EBankingForm(KontoNummer, Kontostand);
           bezahlenFrom.Show();
           this.Hide();
         }
