@@ -155,5 +155,11 @@ namespace PigPayV01
       homeFrom.Show();
       this.Close();
     }
+
+    private void EBankingForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      if (DialogResult != DialogResult.OK)
+      Application.Exit();
+    }
   }
 }

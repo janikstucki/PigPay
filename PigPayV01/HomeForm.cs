@@ -70,25 +70,30 @@ namespace PigPayV01
         }
 
         GreetLBL.Text = "Guten Tag " + Vorname;
+        //string Auswahl = "Guthaben";
+        //AktKontostandLBL.Text = SELECT_OLEDB(query2, connection, Auswahl);
         AktKontostandLBL.Text = Kontostand + " CHF";
         LztTransaktionLBL.Text = LetzteTransaktion;
       }
     }
-    //private void SELECT_OLEDB(string query, OleDbConnection connection)
-    //{
-    //  using (OleDbCommand cmd = new OleDbCommand(query, connection))
-    //  {
-    //    cmd.Parameters.AddWithValue("@Kontonummer", KontoNummer);
 
-    //    using (OleDbDataReader reader = cmd.ExecuteReader())
-    //    {
-    //      if (reader.Read())
-    //      {
-    //        Kontostand = reader["Guthaben"].ToString();
-    //      }
-    //    }
-    //  }
-    //}
+
+    private void SELECT_OLEDB(string query, OleDbConnection connection, string AuswahlString)
+    {
+      using (OleDbCommand cmd = new OleDbCommand(query, connection))
+      {
+        cmd.Parameters.AddWithValue("@Kontonummer", EingeloggteKontonummer);
+
+        using (OleDbDataReader reader = cmd.ExecuteReader())
+        {
+          if (reader.Read())
+          {
+            string Ausgewaehlt = reader[AuswahlString].ToString();
+          }
+        }
+      }
+    }
+
     private void GreetLBL_Click(object sender, EventArgs e)
     {
      
@@ -135,6 +140,11 @@ namespace PigPayV01
     private void LztTransaktionLBL_Click(object sender, EventArgs e)
     {
 
+    }
+
+    private void HomeForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      Application.Exit();
     }
   }
 }
