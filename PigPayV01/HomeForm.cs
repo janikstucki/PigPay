@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Collections.Specialized.BitVector32;
 
 namespace PigPayV01
 {
@@ -53,7 +54,7 @@ namespace PigPayV01
             }
           }
         }
-        string query3 = "SELECT to_acc, Betrag FROM Buchung WHERE Kontonummer = @Kontonummer";
+        string query3 = "SELECT to_acc, Betrag FROM Buchung WHERE fk_Id = @Kontonummer ORDER BY BuchungId DESC";
         using (OleDbCommand cmd = new OleDbCommand(query3, connection))
         {
           cmd.Parameters.AddWithValue("@Kontonummer", EingeloggteKontonummer);
@@ -64,10 +65,11 @@ namespace PigPayV01
             {
               string to_acc = reader["to_acc"].ToString();
               string Betrag = reader["Betrag"].ToString();
-              LetzteTransaktion =  "An " + to_acc + ", " + Betrag + " CHF";
+              LetzteTransaktion = "An " + to_acc + ", " + Betrag + " CHF";
             }
           }
         }
+
 
         GreetLBL.Text = "Guten Tag " + Vorname;
         //string Auswahl = "Guthaben";
@@ -78,21 +80,21 @@ namespace PigPayV01
     }
 
 
-    private void SELECT_OLEDB(string query, OleDbConnection connection, string AuswahlString)
-    {
-      using (OleDbCommand cmd = new OleDbCommand(query, connection))
-      {
-        cmd.Parameters.AddWithValue("@Kontonummer", EingeloggteKontonummer);
+    //private void SELECT_OLEDB(string query, OleDbConnection connection, string AuswahlString)
+    //{
+    //  using (OleDbCommand cmd = new OleDbCommand(query, connection))
+    //  {
+    //    cmd.Parameters.AddWithValue("@Kontonummer", EingeloggteKontonummer);
 
-        using (OleDbDataReader reader = cmd.ExecuteReader())
-        {
-          if (reader.Read())
-          {
-            string Ausgewaehlt = reader[AuswahlString].ToString();
-          }
-        }
-      }
-    }
+    //    using (OleDbDataReader reader = cmd.ExecuteReader())
+    //    {
+    //      if (reader.Read())
+    //      {
+    //        string Ausgewaehlt = reader[AuswahlString].ToString();
+    //      }
+    //    }
+    //  }
+    //}
 
     private void GreetLBL_Click(object sender, EventArgs e)
     {
@@ -145,6 +147,16 @@ namespace PigPayV01
     private void HomeForm_FormClosing(object sender, FormClosingEventArgs e)
     {
       Application.Exit();
+    }
+
+    private void GreetLBL_Click_1(object sender, EventArgs e)
+    {
+
+    }
+
+    private void homeToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+
     }
   }
 }

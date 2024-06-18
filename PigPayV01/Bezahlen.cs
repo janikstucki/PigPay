@@ -93,14 +93,21 @@ namespace PigPayV01
               }
 
 
+              // Mit Datum
+              //string LastTransactionSenden = "INSERT INTO Buchung(fk_Id, to_acc, Datum, Betrag) VALUES(@EK, @ZielKontonummer, @Datum, @Betrag)";
+
+
+
 
               string LastTransactionSenden = "INSERT INTO Buchung(fk_Id, to_acc, Betrag) VALUES(@EK, @ZielKontonummer, @Betrag)";
 
               using (OleDbCommand cmd2 = new OleDbCommand(LastTransactionSenden, connection, transaction))
               {
                 // Add parameters to the command
+                DateTime Datum = DateTime.Now;
                 cmd2.Parameters.AddWithValue("@EK", EingeloggteKontonummer);
                 cmd2.Parameters.AddWithValue("@ZielKontonummer", zielKontonummer);
+                //cmd2.Parameters.AddWithValue("@Datum", OleDbType.Date).Value = Datum;
                 cmd2.Parameters.AddWithValue("@Betrag", betrag);
 
                 try
@@ -153,12 +160,11 @@ namespace PigPayV01
     {
       HomeForm homeFrom = new HomeForm(EingeloggteKontonummer);
       homeFrom.Show();
-      this.Close();
+      this.Hide();
     }
 
     private void EBankingForm_FormClosing(object sender, FormClosingEventArgs e)
     {
-      if (DialogResult != DialogResult.OK)
       Application.Exit();
     }
   }

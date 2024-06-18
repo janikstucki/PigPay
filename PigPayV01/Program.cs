@@ -38,6 +38,9 @@ namespace PigPayV01
       {
         string ProgramKontonummer = loginForm.kontonummer;
         Application.Run(new HomeForm(ProgramKontonummer));
+
+        //HomeForm homeForm = new HomeForm(ProgramKontonummer);
+        //Application.Run(homeForm);
       }
     }
   }

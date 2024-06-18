@@ -139,7 +139,7 @@
       this.PasswortShowCHBX.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
       this.PasswortShowCHBX.Name = "PasswortShowCHBX";
       this.PasswortShowCHBX.Size = new System.Drawing.Size(151, 24);
-      this.PasswortShowCHBX.TabIndex = 3;
+      this.PasswortShowCHBX.TabIndex = 8;
       this.PasswortShowCHBX.Text = "Passwort zeigen";
       this.PasswortShowCHBX.UseVisualStyleBackColor = true;
       this.PasswortShowCHBX.CheckedChanged += new System.EventHandler(this.PasswortShowCHBX_CheckedChanged);

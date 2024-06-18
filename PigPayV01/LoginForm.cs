@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.OleDb;
+using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace PigPayV01
@@ -7,6 +8,7 @@ namespace PigPayV01
   public partial class LoginForm : Form
   {
     public string kontonummer { get; private set; }
+
 
     private bool errorMessageShown = false; // Variable, um zu verfolgen, ob die Fehlermeldung bereits angezeigt wurde
 
@@ -69,16 +71,18 @@ namespace PigPayV01
       {
         e.Cancel = true;
       }
+      if(this.DialogResult == DialogResult.OK)
+      {
+        Application.Exit();
+      }
     }
-
+   
     private void AnmeldenBTN_Click(object sender, EventArgs e)
     {
       OnAnmelden(sender, e);
     }
 
-    private void pictureBox1_Click(object sender, EventArgs e)
-    {
-    }
+    
 
     private void PasswortShowBTN_Click(object sender, EventArgs e)
     {
@@ -87,12 +91,15 @@ namespace PigPayV01
 
     private void PasswortShowCHBX_CheckedChanged(object sender, EventArgs e)
     {
-      if (PasswortTBX.UseSystemPasswordChar == false){
+      if (PasswortTBX.UseSystemPasswordChar == false)
+      {
         PasswortTBX.UseSystemPasswordChar = true;
       }
-      else{
+      else
+      {
         PasswortTBX.UseSystemPasswordChar = false;
       }
+
     }
   }
 }

@@ -48,7 +48,6 @@
       // 
       // MainMenu
       // 
-      this.MainMenu.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
       this.MainMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
       this.MainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeToolStripMenuItem,
@@ -56,8 +55,8 @@
             this.hilfeToolStripMenuItem});
       this.MainMenu.Location = new System.Drawing.Point(0, 0);
       this.MainMenu.Name = "MainMenu";
-      this.MainMenu.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
-      this.MainMenu.Size = new System.Drawing.Size(1020, 33);
+      this.MainMenu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+      this.MainMenu.Size = new System.Drawing.Size(907, 28);
       this.MainMenu.TabIndex = 0;
       this.MainMenu.Text = "menuStrip1";
       // 
@@ -67,13 +66,14 @@
             this.AusloggenToolStripMenuItem,
             this.ExitToolStripMenuItem});
       this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-      this.homeToolStripMenuItem.Size = new System.Drawing.Size(77, 29);
+      this.homeToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
       this.homeToolStripMenuItem.Text = "Home";
+      this.homeToolStripMenuItem.Click += new System.EventHandler(this.homeToolStripMenuItem_Click);
       // 
       // AusloggenToolStripMenuItem
       // 
       this.AusloggenToolStripMenuItem.Name = "AusloggenToolStripMenuItem";
-      this.AusloggenToolStripMenuItem.Size = new System.Drawing.Size(206, 34);
+      this.AusloggenToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
       this.AusloggenToolStripMenuItem.Text = "Ausloggen";
       this.AusloggenToolStripMenuItem.Click += new System.EventHandler(this.OnAusloggenClick);
       // 
@@ -81,14 +81,14 @@
       // 
       this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
       this.ExitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-      this.ExitToolStripMenuItem.Size = new System.Drawing.Size(206, 34);
+      this.ExitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
       this.ExitToolStripMenuItem.Text = "Exit";
       this.ExitToolStripMenuItem.Click += new System.EventHandler(this.OnExitClick);
       // 
       // eBankingToolStripMenuItem
       // 
       this.eBankingToolStripMenuItem.Name = "eBankingToolStripMenuItem";
-      this.eBankingToolStripMenuItem.Size = new System.Drawing.Size(107, 29);
+      this.eBankingToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
       this.eBankingToolStripMenuItem.Text = "E-Banking";
       this.eBankingToolStripMenuItem.Click += new System.EventHandler(this.OnEBankingClick);
       // 
@@ -96,7 +96,7 @@
       // 
       this.hilfeToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
       this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
-      this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(64, 29);
+      this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
       this.hilfeToolStripMenuItem.Text = "Hilfe";
       // 
       // GreetLBL
@@ -104,18 +104,19 @@
       this.GreetLBL.AutoSize = true;
       this.GreetLBL.BackColor = System.Drawing.SystemColors.Control;
       this.GreetLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.GreetLBL.Location = new System.Drawing.Point(443, 50);
+      this.GreetLBL.Location = new System.Drawing.Point(394, 40);
       this.GreetLBL.Name = "GreetLBL";
-      this.GreetLBL.Size = new System.Drawing.Size(126, 29);
+      this.GreetLBL.Size = new System.Drawing.Size(105, 25);
       this.GreetLBL.TabIndex = 1;
       this.GreetLBL.Text = "Guten Tag";
+      this.GreetLBL.Click += new System.EventHandler(this.GreetLBL_Click_1);
       // 
       // AktKontostandLBL
       // 
       this.AktKontostandLBL.AutoSize = true;
-      this.AktKontostandLBL.Location = new System.Drawing.Point(30, 74);
+      this.AktKontostandLBL.Location = new System.Drawing.Point(27, 59);
       this.AktKontostandLBL.Name = "AktKontostandLBL";
-      this.AktKontostandLBL.Size = new System.Drawing.Size(157, 20);
+      this.AktKontostandLBL.Size = new System.Drawing.Size(129, 16);
       this.AktKontostandLBL.TabIndex = 2;
       this.AktKontostandLBL.Text = "Aktueller Kontostand";
       this.AktKontostandLBL.Click += new System.EventHandler(this.AktKontostandLBL_Click);
@@ -125,18 +126,17 @@
       this.panel1.BackColor = System.Drawing.SystemColors.ButtonShadow;
       this.panel1.Controls.Add(this.label1);
       this.panel1.Controls.Add(this.AktKontostandLBL);
-      this.panel1.Location = new System.Drawing.Point(34, 80);
-      this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+      this.panel1.Location = new System.Drawing.Point(30, 64);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(204, 438);
+      this.panel1.Size = new System.Drawing.Size(181, 350);
       this.panel1.TabIndex = 3;
       // 
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(19, 41);
+      this.label1.Location = new System.Drawing.Point(17, 33);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(182, 20);
+      this.label1.Size = new System.Drawing.Size(148, 16);
       this.label1.TabIndex = 3;
       this.label1.Text = "Ihr aktueller Kontostand:";
       // 
@@ -145,19 +145,18 @@
       this.panel2.BackColor = System.Drawing.SystemColors.ButtonShadow;
       this.panel2.Controls.Add(this.LztTransaktionLBL);
       this.panel2.Controls.Add(this.label2);
-      this.panel2.Location = new System.Drawing.Point(803, 80);
-      this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+      this.panel2.Location = new System.Drawing.Point(714, 64);
       this.panel2.Name = "panel2";
-      this.panel2.Size = new System.Drawing.Size(204, 438);
+      this.panel2.Size = new System.Drawing.Size(181, 350);
       this.panel2.TabIndex = 4;
       this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
       // 
       // LztTransaktionLBL
       // 
       this.LztTransaktionLBL.AutoSize = true;
-      this.LztTransaktionLBL.Location = new System.Drawing.Point(30, 74);
+      this.LztTransaktionLBL.Location = new System.Drawing.Point(27, 59);
       this.LztTransaktionLBL.Name = "LztTransaktionLBL";
-      this.LztTransaktionLBL.Size = new System.Drawing.Size(159, 20);
+      this.LztTransaktionLBL.Size = new System.Drawing.Size(131, 16);
       this.LztTransaktionLBL.TabIndex = 4;
       this.LztTransaktionLBL.Text = "Letzte Transaktionen";
       this.LztTransaktionLBL.Click += new System.EventHandler(this.LztTransaktionLBL_Click);
@@ -165,17 +164,17 @@
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(30, 41);
+      this.label2.Location = new System.Drawing.Point(27, 33);
       this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(159, 20);
+      this.label2.Size = new System.Drawing.Size(131, 16);
       this.label2.TabIndex = 3;
       this.label2.Text = "Letzte Transaktionen";
       // 
       // HomeForm
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1020, 532);
+      this.ClientSize = new System.Drawing.Size(907, 426);
       this.Controls.Add(this.panel2);
       this.Controls.Add(this.panel1);
       this.Controls.Add(this.GreetLBL);
