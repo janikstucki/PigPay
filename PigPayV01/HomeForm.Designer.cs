@@ -41,6 +41,8 @@
       this.panel2 = new System.Windows.Forms.Panel();
       this.LztTransaktionLBL = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
+      this.LztErhaltTransaktionLBL = new System.Windows.Forms.Label();
+      this.label4 = new System.Windows.Forms.Label();
       this.MainMenu.SuspendLayout();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
@@ -143,6 +145,8 @@
       // panel2
       // 
       this.panel2.BackColor = System.Drawing.SystemColors.ButtonShadow;
+      this.panel2.Controls.Add(this.LztErhaltTransaktionLBL);
+      this.panel2.Controls.Add(this.label4);
       this.panel2.Controls.Add(this.LztTransaktionLBL);
       this.panel2.Controls.Add(this.label2);
       this.panel2.Location = new System.Drawing.Point(714, 64);
@@ -169,6 +173,24 @@
       this.label2.Size = new System.Drawing.Size(131, 16);
       this.label2.TabIndex = 3;
       this.label2.Text = "Letzte Transaktionen";
+      // 
+      // LztErhaltTransaktionLBL
+      // 
+      this.LztErhaltTransaktionLBL.AutoSize = true;
+      this.LztErhaltTransaktionLBL.Location = new System.Drawing.Point(33, 180);
+      this.LztErhaltTransaktionLBL.Name = "LztErhaltTransaktionLBL";
+      this.LztErhaltTransaktionLBL.Size = new System.Drawing.Size(131, 16);
+      this.LztErhaltTransaktionLBL.TabIndex = 6;
+      this.LztErhaltTransaktionLBL.Text = "Letzte Transaktionen";
+      // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Location = new System.Drawing.Point(44, 154);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(190, 16);
+      this.label4.TabIndex = 5;
+      this.label4.Text = "Letzte erhaltene Transaktionen";
       // 
       // HomeForm
       // 
@@ -210,5 +232,7 @@
     private System.Windows.Forms.Panel panel2;
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.Label LztTransaktionLBL;
+    private System.Windows.Forms.Label LztErhaltTransaktionLBL;
+    private System.Windows.Forms.Label label4;
   }
 }

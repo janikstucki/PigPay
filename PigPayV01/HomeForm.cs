@@ -18,6 +18,7 @@ namespace PigPayV01
     private string EingeloggteKontonummer ;
     private string Kontostand = string.Empty;
     private string LetzteTransaktion = string.Empty;
+    private string LetzteErhalteneTransaktion = string.Empty;
 
 
     public HomeForm(string HomeKontonummer)
@@ -71,6 +72,22 @@ namespace PigPayV01
           }
         }
 
+        string query4 = "SELECT fk_Id, Betrag FROM Buchung WHERE to_acc = @Kontonummer ORDER BY BuchungId DESC";
+        using (OleDbCommand cmd = new OleDbCommand(query4, connection))
+        {
+          cmd.Parameters.AddWithValue("@Kontonummer", EingeloggteKontonummer);
+
+          using (OleDbDataReader reader = cmd.ExecuteReader())
+          {
+            if (reader.Read())
+            {
+              string fk_Id = reader["fk_Id"].ToString();
+              string Betrag = reader["Betrag"].ToString();
+              LetzteErhalteneTransaktion = "Von " + fk_Id + ", " + Betrag + " CHF";
+            }
+          }
+        }
+
 
 
 
@@ -79,6 +96,7 @@ namespace PigPayV01
         //AktKontostandLBL.Text = SELECT_OLEDB(query2, connection, Auswahl);
         AktKontostandLBL.Text = Kontostand + " CHF";
         LztTransaktionLBL.Text = LetzteTransaktion;
+        LztErhaltTransaktionLBL.Text = LetzteErhalteneTransaktion;
       }
     }
 

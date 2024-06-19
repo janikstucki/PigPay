@@ -91,5 +91,10 @@ namespace PigPayV01
     {
       PasswortTBX.UseSystemPasswordChar = !PasswortTBX.UseSystemPasswordChar;
     }
+
+    private void label7_Click(object sender, EventArgs e)
+    {
+
+    }
   }
 }
