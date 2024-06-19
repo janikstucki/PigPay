@@ -129,8 +129,8 @@ namespace PigPayV01
       if (loginForm.DialogResult == DialogResult.OK)
       {
         EingeloggteKontonummer = loginForm.kontonummer;
-        this.Show();
-        // Optional: Hier die Inhalte der HomeForm aktualisieren, falls notwendig
+        HomeForm homeForm = new HomeForm(EingeloggteKontonummer);
+        homeForm.Show();
       }
       else
       {
