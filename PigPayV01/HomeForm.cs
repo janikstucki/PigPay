@@ -127,7 +127,7 @@ namespace PigPayV01
       this.Hide();
 
       //Form homeForm = ActiveForm;
-      //Form homeForm = ActiveForm;
+      ////Form homeForm = ActiveForm;
       //if (loginForm.Visible) { homeForm.Close(); }
     }
 

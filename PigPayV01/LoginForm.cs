@@ -44,14 +44,14 @@ namespace PigPayV01
 
             if (userCount == 1)
             {
-              //int CheckZahl = 0;
-              //CheckZahl += 1;
-              //  if (CheckZahl < 1)
-              //  {
-              //    HomeForm homeForm = new HomeForm(kontonummer);
-              //    homeForm.Show();
-              //    this.Hide();
-              //  }
+              int CheckZahl = 0;
+              CheckZahl += 1;
+              if (CheckZahl <= 1)
+              {
+                HomeForm homeForm = new HomeForm(kontonummer);
+                homeForm.Show();
+                this.Hide();
+              }
               this.DialogResult = DialogResult.OK;
             }
             else
