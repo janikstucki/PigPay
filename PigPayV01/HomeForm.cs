@@ -19,6 +19,7 @@ namespace PigPayV01
     private string Kontostand = string.Empty;
     private string LetzteTransaktion = string.Empty;
 
+
     public HomeForm(string HomeKontonummer)
     {
       InitializeComponent();
@@ -69,6 +70,8 @@ namespace PigPayV01
             }
           }
         }
+
+
 
 
         GreetLBL.Text = "Guten Tag " + Vorname;
@@ -123,7 +126,9 @@ namespace PigPayV01
       loginForm.Show();
       this.Hide();
 
-      //if (loginForm.Visible) { this.Close(); }
+      //Form homeForm = ActiveForm;
+      //Form homeForm = ActiveForm;
+      //if (loginForm.Visible) { homeForm.Close(); }
     }
 
     private void OnExitClick(object sender, EventArgs e)
@@ -158,6 +163,8 @@ namespace PigPayV01
     {
 
     }
+
+    
   }
 }
 

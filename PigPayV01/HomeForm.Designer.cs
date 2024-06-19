@@ -56,7 +56,7 @@
       this.MainMenu.Location = new System.Drawing.Point(0, 0);
       this.MainMenu.Name = "MainMenu";
       this.MainMenu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-      this.MainMenu.Size = new System.Drawing.Size(907, 28);
+      this.MainMenu.Size = new System.Drawing.Size(1129, 28);
       this.MainMenu.TabIndex = 0;
       this.MainMenu.Text = "menuStrip1";
       // 
@@ -73,7 +73,7 @@
       // AusloggenToolStripMenuItem
       // 
       this.AusloggenToolStripMenuItem.Name = "AusloggenToolStripMenuItem";
-      this.AusloggenToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+      this.AusloggenToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
       this.AusloggenToolStripMenuItem.Text = "Ausloggen";
       this.AusloggenToolStripMenuItem.Click += new System.EventHandler(this.OnAusloggenClick);
       // 
@@ -81,7 +81,7 @@
       // 
       this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
       this.ExitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-      this.ExitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+      this.ExitToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
       this.ExitToolStripMenuItem.Text = "Exit";
       this.ExitToolStripMenuItem.Click += new System.EventHandler(this.OnExitClick);
       // 
@@ -147,7 +147,7 @@
       this.panel2.Controls.Add(this.label2);
       this.panel2.Location = new System.Drawing.Point(714, 64);
       this.panel2.Name = "panel2";
-      this.panel2.Size = new System.Drawing.Size(181, 350);
+      this.panel2.Size = new System.Drawing.Size(208, 350);
       this.panel2.TabIndex = 4;
       this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
       // 
@@ -164,7 +164,7 @@
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(27, 33);
+      this.label2.Location = new System.Drawing.Point(38, 33);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(131, 16);
       this.label2.TabIndex = 3;
@@ -174,7 +174,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(907, 426);
+      this.ClientSize = new System.Drawing.Size(1129, 513);
       this.Controls.Add(this.panel2);
       this.Controls.Add(this.panel1);
       this.Controls.Add(this.GreetLBL);

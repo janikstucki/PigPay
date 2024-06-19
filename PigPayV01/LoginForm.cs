@@ -9,7 +9,6 @@ namespace PigPayV01
   {
     public string kontonummer { get; private set; }
 
-
     private bool errorMessageShown = false; // Variable, um zu verfolgen, ob die Fehlermeldung bereits angezeigt wurde
 
     public LoginForm()
@@ -39,12 +38,21 @@ namespace PigPayV01
           {
             cmd.Parameters.AddWithValue("@Kontonummer", kontonummer);
             cmd.Parameters.AddWithValue("@Passwort", passwort);
-            
+
             int userCount = (int)cmd.ExecuteScalar();
+            this.DialogResult = DialogResult.None;
+
             if (userCount == 1)
             {
+              //int CheckZahl = 0;
+              //CheckZahl += 1;
+              //  if (CheckZahl < 1)
+              //  {
+              //    HomeForm homeForm = new HomeForm(kontonummer);
+              //    homeForm.Show();
+              //    this.Hide();
+              //  }
               this.DialogResult = DialogResult.OK;
-              
             }
             else
             {
@@ -71,22 +79,20 @@ namespace PigPayV01
       {
         e.Cancel = true;
       }
-      if(this.DialogResult == DialogResult.OK)
-      {
         Application.Exit();
-      }
+      
     }
-   
+
     private void AnmeldenBTN_Click(object sender, EventArgs e)
     {
       OnAnmelden(sender, e);
     }
 
-    
+
 
     private void PasswortShowBTN_Click(object sender, EventArgs e)
     {
-      
+
     }
 
     private void PasswortShowCHBX_CheckedChanged(object sender, EventArgs e)
