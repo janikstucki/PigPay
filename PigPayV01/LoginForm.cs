@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.OleDb;
-using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace PigPayV01
@@ -44,15 +43,8 @@ namespace PigPayV01
 
             if (userCount == 1)
             {
-              int CheckZahl = 0;
-              CheckZahl += 1;
-              if (CheckZahl <= 1)
-              {
-                HomeForm homeForm = new HomeForm(kontonummer);
-                homeForm.Show();
-                this.Hide();
-              }
               this.DialogResult = DialogResult.OK;
+              this.Hide();
             }
             else
             {
@@ -79,16 +71,16 @@ namespace PigPayV01
       {
         e.Cancel = true;
       }
+      else
+      {
         Application.Exit();
-      
+      }
     }
 
     private void AnmeldenBTN_Click(object sender, EventArgs e)
     {
       OnAnmelden(sender, e);
     }
-
-
 
     private void PasswortShowBTN_Click(object sender, EventArgs e)
     {
@@ -97,15 +89,7 @@ namespace PigPayV01
 
     private void PasswortShowCHBX_CheckedChanged(object sender, EventArgs e)
     {
-      if (PasswortTBX.UseSystemPasswordChar == false)
-      {
-        PasswortTBX.UseSystemPasswordChar = true;
-      }
-      else
-      {
-        PasswortTBX.UseSystemPasswordChar = false;
-      }
-
+      PasswortTBX.UseSystemPasswordChar = !PasswortTBX.UseSystemPasswordChar;
     }
   }
 }

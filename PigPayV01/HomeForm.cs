@@ -122,9 +122,25 @@ namespace PigPayV01
 
     private void OnAusloggenClick(object sender, EventArgs e)
     {
-      LoginForm loginForm = new LoginForm();
-      loginForm.Show();
       this.Hide();
+      LoginForm loginForm = new LoginForm();
+      loginForm.ShowDialog();
+
+      if (loginForm.DialogResult == DialogResult.OK)
+      {
+        EingeloggteKontonummer = loginForm.kontonummer;
+        this.Show();
+        // Optional: Hier die Inhalte der HomeForm aktualisieren, falls notwendig
+      }
+      else
+      {
+        Application.Exit();
+      }
+
+
+      //LoginForm loginForm = new LoginForm();
+      //loginForm.Show();
+      //this.Hide();
 
       //Form homeForm = ActiveForm;
       ////Form homeForm = ActiveForm;
